@@ -14,5 +14,26 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const BaseTabs:Story = {
+  args:{
+    tabs:[
+      {
+        id:'1',
+        title:'첫번쨰 탭',
+        content:'첫번쨰 탭 아이템'
+      },
+      
+      {
+        id:'2',
+        title:'두번쨰 탭',
+        content:'두번쨰 탭 아이템'
+      }
+    ,
+      {
+        id:'3',
+        title:'세번쨰 탭',
+        content:'세번쨰 탭 아이템'
+      }
+    ]
+  }
     
 }
