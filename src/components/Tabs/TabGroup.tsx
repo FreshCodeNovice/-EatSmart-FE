@@ -1,37 +1,34 @@
 import React from 'react';
-import Tab from './';
+import Tab from './Tab';
 import styled from 'styled-components';
 import TabContext from './TabContext';
 import TabFunnel from './TabFunnel';
 
 const StyledTabFunnel = styled.div``;
 
-const TabGroup = () => {
+export type tabGroup = {
+  id: string;
+  title: string;
+  content?: React.ReactNode;
+};
+
+const TabGroup = ({ tabs }: { tabs: tabGroup[] }) => {
   return (
     <TabContext>
       <div>
-        <Tab id="tab1" tabTitle="Tab 1" />
-        <Tab id="tab2" tabTitle="Tab 2" />
-        <Tab id="tab3" tabTitle="Tab 3" />
-        <Tab id="tab4" tabTitle="Tab 4" />
+        {tabs.map((tab) => {
+          return <Tab id={tab.id} tabTitle={tab.title} key={tab.id} />;
+        })}
       </div>
 
       <StyledTabFunnel>
-        <TabFunnel id="tab1">
-          <div>첫번쨰 탭 내용</div>
-        </TabFunnel>
-
-        <TabFunnel id="tab2">
-          <div>두번쨰 탭 내용</div>
-        </TabFunnel>
-
-        <TabFunnel id="tab3">
-          <div>세번쨰 탭 내용</div>
-        </TabFunnel>
-
-        <TabFunnel id="tab4">
-          <div>네번쨰 탭 내용</div>
-        </TabFunnel>
+        {tabs.map((tab) => {
+          return (
+            <TabFunnel id={tab.id} key={tab.id}>
+              {tab.content}
+            </TabFunnel>
+          );
+        })}
       </StyledTabFunnel>
     </TabContext>
   );
