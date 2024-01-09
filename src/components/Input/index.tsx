@@ -7,6 +7,9 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const BaseInput = styled.input`
   background-color: #f5f5f5;
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-radius: 3rem;
   padding-left: 2.5rem;
   width: 14.375rem;
