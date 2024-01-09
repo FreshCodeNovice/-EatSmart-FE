@@ -1,6 +1,6 @@
-import Tab from '@/components/Tabs/Tab';
-import TabFunnel from '@/components/Tabs/TabFunnel';
-import TabGroup from '@/components/Tabs/TabGroup';
+import Tab from './Tab';
+import TabFunnel from './TabFunnel';
+import TabGroup from './TabGroup';
 
 const Tabs = {
   Tab: Tab,

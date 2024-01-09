@@ -2,10 +2,10 @@ import { forwardRef, InputHTMLAttributes, useRef, FocusEvent } from 'react';
 import styled from 'styled-components';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  icon?: React.ReactNode;
+  imgIcon?: React.ReactNode;
 }
 
-const BaseInput = styled.input`
+const BaseInput = styled.input<InputProps>`
   background-color: #f5f5f5;
   border: none;
   padding-top: 5px;
@@ -13,12 +13,12 @@ const BaseInput = styled.input`
   border-radius: 3rem;
   padding-left: 2.5rem;
   width: 14.375rem;
+  height: ${(props) => props.height || 'auto'};
 `;
 
 const Wrapper = styled.div`
   position: relative;
   display: inline-block;
-  height: auto;
 `;
 
 const IconWrapper = styled.i`
@@ -48,12 +48,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   return (
     <Wrapper>
-      {props.icon && <IconWrapper>{props.icon}</IconWrapper>}
+      {props.imgIcon && <IconWrapper>{props.imgIcon}</IconWrapper>}
       <BaseInput
         {...props}
         ref={inputRef}
         onClick={handleClick}
         onBlur={handleBlur}
+        height={props.height}
       />
     </Wrapper>
   );

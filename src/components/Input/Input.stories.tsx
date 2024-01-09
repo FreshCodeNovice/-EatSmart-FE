@@ -20,6 +20,6 @@ export const BaseInput:Story = {
 
 export const SearchInput:Story = {
     args:{
-        icon:<Image src = {Search} alt = "검색 이미지"  />
+        imgIcon:<Image src = {Search} alt = "검색 이미지"  />
     }
 }
