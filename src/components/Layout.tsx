@@ -6,14 +6,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <main
         style={{
           maxWidth: '500px',
-          margin: '0',
+          margin: '0 auto',
           border: '1px solid black',
           minHeight: '100vh',
         }}
       >
         {children}
+
+        <Footer />
       </main>
-      <Footer />
     </>
   );
 };
