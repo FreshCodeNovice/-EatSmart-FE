@@ -13,7 +13,6 @@ const StyledSearchListTitle = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-top: 7rem;
   margin-left: 3rem;
 `;
 
