@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import SearchList from './index'
+import Spinner from './index'
 const meta = {
-  title: '식품 검색 레이아웃',
-  component: SearchList,
+  title: '스피너 컴포넌트',
+  component: Spinner,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof SearchList>;
+} satisfies Meta<typeof Spinner>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const BaseSearchList:Story = {
+export const BaseSpinner:Story = {
 
 }
