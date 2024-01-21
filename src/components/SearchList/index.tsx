@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Tabs from '../Tabs';
@@ -10,6 +11,7 @@ const StyledSearchListTitle = styled.div`
   color: #000;
   display: flex;
   text-align: center;
+  justify-content: center;
   font-family: Inter;
   font-size: 1.875rem;
   font-style: normal;
@@ -34,6 +36,10 @@ const SearchList = () => {
         style={{
           marginTop: '1rem',
           marginLeft: '3rem',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <Input
@@ -79,4 +85,4 @@ const SearchList = () => {
   );
 };
 
-export default SearchList;
+export default memo(SearchList);
