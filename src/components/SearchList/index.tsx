@@ -5,7 +5,7 @@ import Tabs from '../Tabs';
 import Input from '../Input';
 import Search from '../../../public/SVG/Search.svg';
 import SearchedResult from './SearchResult';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const StyledSearchListTitle = styled.div`
   color: #000;
@@ -28,7 +28,8 @@ const StyledSearchListCount = styled.span`
 `;
 
 const SearchList = () => {
-  const [keyword, setKeyword] = useState<string>('');
+  const [searchKeyword, setSearchKeyword] = useState('');
+
   return (
     <div>
       <StyledSearchListTitle>오늘 한끼</StyledSearchListTitle>
@@ -43,7 +44,11 @@ const SearchList = () => {
         }}
       >
         <Input
-          onChange={(e) => setKeyword(e.target.value)}
+          onKeyUp={(e) => {
+            if (e.key === 'Enter') {
+              setSearchKeyword(e.currentTarget.value);
+            }
+          }}
           height={'2.5rem'}
           imgIcon={
             <Image src={Search} alt="검색 이미지" width={15} height={15} />
@@ -63,7 +68,7 @@ const SearchList = () => {
                 content: (
                   <div>
                     <div>즐겨찾기</div>
-                    <SearchedResult keyword={keyword} />
+                    <SearchedResult keyword={searchKeyword} />
                   </div>
                 ),
               },
@@ -73,7 +78,7 @@ const SearchList = () => {
                 content: (
                   <div>
                     <div>식사세트</div>
-                    <SearchedResult keyword={keyword} />
+                    <SearchedResult keyword={searchKeyword} />
                   </div>
                 ),
               },

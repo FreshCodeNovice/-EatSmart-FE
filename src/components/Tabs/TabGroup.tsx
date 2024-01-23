@@ -14,7 +14,7 @@ export type tabGroup = {
 
 const TabGroup = ({ tabs }: { tabs: tabGroup[] }) => {
   return (
-    <TabContext>
+    <TabContext initalValue={tabs[0].id}>
       <div>
         {tabs.map((tab) => {
           return <Tab id={tab.id} tabTitle={tab.title} key={tab.id} />;

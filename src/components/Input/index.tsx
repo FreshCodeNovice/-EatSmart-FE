@@ -13,7 +13,7 @@ const BaseInput = styled.input<InputProps>`
   border-radius: 3rem;
   padding-left: 2.5rem;
   width: 14.375rem;
-  height: ${(props) => props.height || 'auto'};
+  height: ${(props) => props.height ?? 'auto'};
 `;
 
 const Wrapper = styled.div`
@@ -34,9 +34,10 @@ const IconWrapper = styled.i`
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleClick = () => {
-    if (inputRef.current) {
+  const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+    if (inputRef.current && props.onClick) {
       inputRef.current.focus();
+      props.onClick(e);
     }
   };
 
