@@ -6,21 +6,24 @@ import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { RecoilEnv } from 'recoil';
+import Layout from '@/components/Layout';
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
 export default function App({ Component, pageProps }: AppProps) {
-    const [queryClient] = React.useState(() => new QueryClient());
-    return (
-        <>
-            <ThemeProvider theme={theme}>
-                <QueryClientProvider client={queryClient}>
-                    <RecoilRoot>
-                        <GlobalStyle />
-                        <Component {...pageProps} />
-                    </RecoilRoot>
-                </QueryClientProvider>
-            </ThemeProvider>
-        </>
-    );
+  const [queryClient] = React.useState(() => new QueryClient());
+  return (
+    <>
+      <ThemeProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <RecoilRoot>
+            <GlobalStyle />
+            <Layout>
+              <Component {...pageProps}></Component>
+            </Layout>
+          </RecoilRoot>
+        </QueryClientProvider>
+      </ThemeProvider>
+    </>
+  );
 }

@@ -1,0 +1,19 @@
+{
+  "foodList": [
+    {
+      "foodName": "단무지",
+      "calorie": "25kcal",
+      "volume": "1소접시 (60g)"
+    },
+    {
+      "foodName": "대나무",
+      "calorie": "25kcal",
+      "volume": "1소접시 (60g)"
+    },
+    {
+      "foodName": "도토리묵",
+      "calorie": "25kcal",
+      "volume": "1소접시 (60g)"
+    }
+  ]
+}
