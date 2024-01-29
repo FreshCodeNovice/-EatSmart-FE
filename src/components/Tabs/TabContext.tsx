@@ -7,8 +7,14 @@ type TabContextType = {
 
 export const TabIdContext = createContext<TabContextType | null>(null);
 
-const TabContext = ({ children }: { children: React.ReactNode }) => {
-  const [tabId, setTabId] = useState<null | string>(null);
+const TabContext = ({
+  children,
+  initalValue,
+}: {
+  children: React.ReactNode;
+  initalValue: string;
+}) => {
+  const [tabId, setTabId] = useState<null | string>(initalValue ?? null);
 
   const value = useMemo(
     () => ({

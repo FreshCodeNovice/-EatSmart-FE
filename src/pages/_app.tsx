@@ -1,11 +1,11 @@
-import GlobalStyle from "@/styles/GlobalStyle";
-import type { AppProps } from "next/app";
-import { ThemeProvider } from "styled-components";
-import theme from "@/styles/Theme/theme";
-import { RecoilRoot } from "recoil";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import React from "react";
-import { RecoilEnv } from "recoil";
+import GlobalStyle from '@/styles/GlobalStyle';
+import type { AppProps } from 'next/app';
+import { ThemeProvider } from 'styled-components';
+import theme from '@/styles/Theme/theme';
+import { RecoilRoot } from 'recoil';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React from 'react';
+import { RecoilEnv } from 'recoil';
 import AppLayout from "@/components/layout/AppLayout";
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
