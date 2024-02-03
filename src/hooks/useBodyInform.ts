@@ -15,7 +15,7 @@ function useBodyInform(initialState: IBodyInform) {
         });
     };
 
-    return [bodyInformData, handleInputChange];
+    return [bodyInformData, handleInputChange, setBodyInformData];
 }
 
 export default useBodyInform;
