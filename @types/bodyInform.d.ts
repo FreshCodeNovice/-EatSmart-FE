@@ -3,5 +3,5 @@ interface IBodyInform {
     height: number;
     weight: number;
     age: number;
-    activityScore: number;
+    activityScore: 'low' | 'mim' | 'high';
 }

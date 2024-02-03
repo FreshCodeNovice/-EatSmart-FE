@@ -1,58 +1,74 @@
 import useBodyInform from '@/hooks/useBodyInform';
-import React, { ChangeEvent, ChangeEventHandler, useState } from 'react';
+import React, { ChangeEvent, ChangeEventHandler, use, useState } from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
+import useSelect from '@/hooks/useSelect';
+import Ymale from '@/assets/images/Ymale.png';
+import Nmale from '@/assets/images/Nmale.png';
+import Nfemale from '@/assets/images/Nfemale.png';
+import Yfemale from '@/assets/images/Yfemale.png';
+import useSelectImage from '@/hooks/useSelectImage';
+import RadioImageButton from '@/components/Image/RadioImageButton';
+import AppLayout from '@/components/layout/AppLayout';
+import xhigh from '@/assets/images/xhigh.png';
+import xmid from '@/assets/images/xmid.png';
+import xlow from '@/assets/images/xlow.png';
+import ohigh from '@/assets/images/ohigh.png';
+import omid from '@/assets/images/omid.png';
+import olow from '@/assets/images/olow.png';
 
 function BodyInform() {
-    const [bodyInformData, handleInputChange] = useBodyInform({
-        gender: 'male',
-        height: 0,
-        weight: 0,
-        age: 0,
-        activityScore: 0,
-    });
-    //TODO: 다음 단계 버튼 클릭시 bodyInformData를 서버로 보내고, 서버에서 계산된 데이터를 받아와서 다음 페이지로 넘어가야함
-    //TODO: 타입 단언 제거
+    const [bodyInformData, handleInputChange, setBodyInformData] =
+        useBodyInform({
+            gender: 'male',
+            height: 0,
+            weight: 0,
+            age: 0,
+            activityScore: 'low',
+        });
+
+    const {
+        selectedItem: genderSelectedItem,
+        stateObject: genderState,
+        selectItem: genderSelect,
+    } = useSelect(['male', 'female'], 'male', setBodyInformData, 'gender');
+
+    const {
+        selectedItem: activitySelectedItem,
+        stateObject: activityState,
+        selectItem: activitySelect,
+    } = useSelect(
+        ['low', 'mid', 'high'],
+        'low',
+        setBodyInformData,
+        'activityScore'
+    );
+
     return (
-        <StyledBodyInformContainer>
+        <AppLayout>
             <StyledFormContainer>
                 <StyledHeader>
                     <h2>신체 정보 입력</h2>
                     <div>인적 사항을 입력해주세요</div>
                 </StyledHeader>
                 <StyeldForm>
-                    <div className="inputContainer">
+                    <div className="selectContainer">
                         <div className="title">성별</div>
-                        <div className="radioContainer">
-                            <label>
-                                남자{' '}
-                                <input
-                                    type="radio"
-                                    name="gender"
-                                    value="male"
-                                    onChange={
-                                        handleInputChange as ChangeEventHandler<HTMLInputElement>
-                                    }
-                                    checked={
-                                        (bodyInformData as IBodyInform)
-                                            .gender === 'male'
-                                    }
-                                />
-                            </label>
-                            <label>
-                                여자{' '}
-                                <input
-                                    type="radio"
-                                    name="gender"
-                                    value="female"
-                                    onChange={
-                                        handleInputChange as ChangeEventHandler<HTMLInputElement>
-                                    }
-                                    checked={
-                                        (bodyInformData as IBodyInform)
-                                            .gender === 'female'
-                                    }
-                                />
-                            </label>
+                        <div className="selectElementContainerGender">
+                            <RadioImageButton
+                                state={genderState.male}
+                                selectedSrc={Ymale}
+                                alt="male"
+                                onClickFn={() => genderSelect('male')}
+                                unselectedSrc={Nmale}
+                            />
+                            <RadioImageButton
+                                state={genderState.female}
+                                selectedSrc={Yfemale}
+                                alt="female"
+                                onClickFn={() => genderSelect('female')}
+                                unselectedSrc={Nfemale}
+                            />
                         </div>
                     </div>
                     <div className="inputContainer">
@@ -91,39 +107,49 @@ function BodyInform() {
                             name="age"
                         />
                     </div>
-                    <div className="inputContainer">
-                        <div className="title">활동 점수</div>
-                        <select
-                            name="activityScore"
-                            onChange={
-                                handleInputChange as unknown as ChangeEventHandler<HTMLSelectElement>
-                            }
-                        >
-                            <option value="0">선택</option>
-                            <option value="1.2">거의 움직이지 않음</option>
-                            <option value="1.375">가벼운 활동</option>
-                            <option value="1.55">보통의 활동수준</option>
-                            <option value="1.725">활발한 활동수준</option>
-                            <option value="1.9">매우 활발한 활동수준</option>
-                        </select>
+                    <div className="selectContainer">
+                        <div className="title">평소 활동량</div>
+                        <div className="selectElementContainer">
+                            <RadioImageButton
+                                state={activityState.low}
+                                selectedSrc={olow}
+                                alt="0"
+                                onClickFn={() => activitySelect('low')}
+                                unselectedSrc={xlow}
+                            />
+                            <RadioImageButton
+                                state={activityState.mid}
+                                selectedSrc={omid}
+                                alt="1"
+                                onClickFn={() => activitySelect('mid')}
+                                unselectedSrc={xmid}
+                            />
+                            <RadioImageButton
+                                state={activityState.high}
+                                selectedSrc={ohigh}
+                                alt="2"
+                                onClickFn={() => activitySelect('high')}
+                                unselectedSrc={xhigh}
+                            />
+                        </div>
                     </div>
                 </StyeldForm>
                 <StyledButton onClick={() => console.log(bodyInformData)}>
                     다음 단계
                 </StyledButton>
             </StyledFormContainer>
-        </StyledBodyInformContainer>
+        </AppLayout>
     );
 }
 
 export default BodyInform;
 
 const StyledButton = styled.button`
-    background-color: #0e5a0c;
+    background-color: #6aa7ef;
     color: ${({ theme }) => theme.color.white};
-    width: 100%;
+    width: 85%;
     height: 3rem;
-    border-radius: 0.5rem;
+    border-radius: 50px;
 `;
 
 const StyeldForm = styled.div`
@@ -145,19 +171,41 @@ const StyeldForm = styled.div`
 
     .inputText {
         width: 100%;
-        height: 2rem;
-        border-bottom: 2px solid gray;
+        height: 2.2rem;
         font-size: 1.3rem;
+        padding: 0.1rem 0.2rem;
         transition: border-bottom 0.3s ease-in-out;
+        background-color: ${({ theme }) => theme.color.lightgrey};
+        border-radius: 10px;
         &:hover {
             cursor: pointer;
-            border-bottom: 2px solid black;
         }
     }
     .inputContainer {
         display: flex;
         flex-direction: column;
+        gap: 0.5rem;
+
+        margin-top: 2rem;
+    }
+    .selectContainer {
+        margin-top: 1.4rem;
+        display: flex;
+        flex-direction: column;
         gap: 1rem;
+
+        .selectElementContainer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 1rem;
+        }
+        .selectElementContainerGender {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            align-items: center;
+        }
     }
     div {
         width: 100%;
@@ -193,9 +241,10 @@ const StyledBodyInformContainer = styled.div`
 `;
 
 const StyledFormContainer = styled.div`
+    margin-top: 2rem;
     width: 20rem;
-    height: 40rem;
-    justify-content: space-between;
+
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     gap: 2rem;

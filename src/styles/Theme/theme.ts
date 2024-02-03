@@ -10,6 +10,7 @@ const color = {
     black: '#000000',
     background: '#131313',
     grey: '#6b6b6b',
+    lightgrey: '#efefef',
 };
 
 const fontWeight = {
