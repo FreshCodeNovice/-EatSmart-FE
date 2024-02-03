@@ -6,7 +6,7 @@ import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { RecoilEnv } from 'recoil';
-import Layout from '@/components/Layout';
+import AppLayout from "@/components/layout/AppLayout";
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
@@ -18,9 +18,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <QueryClientProvider client={queryClient}>
           <RecoilRoot>
             <GlobalStyle />
-            <Layout>
-              <Component {...pageProps}></Component>
-            </Layout>
+            <AppLayout>
+              <Component {...pageProps} />
+            </AppLayout>
           </RecoilRoot>
         </QueryClientProvider>
       </ThemeProvider>
